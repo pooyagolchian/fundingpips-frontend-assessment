@@ -4,7 +4,7 @@ import type React from "react";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 
-export default function ReduxProvider({
+export default function Index({
 	children,
 }: {
 	children: React.ReactNode;
