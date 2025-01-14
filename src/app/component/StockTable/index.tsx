@@ -1,5 +1,6 @@
 import { fetchMockStockData } from "@/app/services/mockService";
 import type { AppDispatch, RootState } from "@/app/store";
+import { ArrowDownIcon, ArrowUpIcon } from "@heroicons/react/16/solid";
 import { StarIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,6 +73,15 @@ const StockTable = () => {
 			direction = "descending";
 		}
 		setSortConfig({ key, direction });
+	};
+
+	const renderSortIcon = (key: keyof StockData) => {
+		if (!sortConfig || sortConfig.key !== key) return null;
+		return sortConfig.direction === "ascending" ? (
+			<ArrowUpIcon className="w-4 h-4 inline-block ml-2 text-gray-500" />
+		) : (
+			<ArrowDownIcon className="w-4 h-4 inline-block ml-2 text-gray-500" />
+		);
 	};
 
 	const sortedStockData = useMemo(() => {
@@ -173,28 +183,28 @@ const StockTable = () => {
 										className="px-4 py-2 text-left font-semibold cursor-pointer"
 										onClick={() => handleSort("symbol")}
 									>
-										Symbol
+										Symbol {renderSortIcon("symbol")}
 									</th>
 									{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 									<th
 										className="px-4 py-2 text-left font-semibold cursor-pointer"
 										onClick={() => handleSort("price")}
 									>
-										Price
+										Price {renderSortIcon("price")}
 									</th>
 									{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 									<th
 										className="px-4 py-2 text-left font-semibold cursor-pointer"
 										onClick={() => handleSort("change")}
 									>
-										Change
+										Change {renderSortIcon("change")}
 									</th>
 									{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 									<th
 										className="px-4 py-2 text-left font-semibold cursor-pointer"
 										onClick={() => handleSort("percentageChange")}
 									>
-										Percentage Change
+										Percentage Change {renderSortIcon("percentageChange")}
 									</th>
 									<th className="px-4 py-2 text-left font-semibold">Actions</th>
 								</tr>
@@ -210,8 +220,6 @@ const StockTable = () => {
 										</td>
 										<td className="px-4 py-3 border flex justify-center items-center space-x-2">
 											<StarIcon
-												role="button"
-												aria-label="Toggle favorite"
 												data-testid="favorite-stock-icon"
 												tabIndex={0}
 												onClick={() => handleToggleFavorite(stock.symbol)}
@@ -225,8 +233,6 @@ const StockTable = () => {
 											/>
 											<XMarkIcon
 												data-testid="remove-stock-icon"
-												role="button"
-												aria-label="Remove stock"
 												tabIndex={0}
 												onClick={() => handleRemoveStock(stock.symbol)}
 												onKeyDown={(e) =>
