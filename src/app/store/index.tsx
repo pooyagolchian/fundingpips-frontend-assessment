@@ -7,10 +7,10 @@ import {
 import { combineReducers } from "redux";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import counterReducer from "./slices/stockSlice";
+import stockReducer from "./slices/stockSlice";
 
 const rootReducer = combineReducers({
-	counter: counterReducer,
+	stock: stockReducer,
 });
 
 const persistConfig = {
@@ -38,6 +38,7 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
