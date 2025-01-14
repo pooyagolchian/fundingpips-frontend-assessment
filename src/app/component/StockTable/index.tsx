@@ -211,6 +211,8 @@ const StockTable = () => {
 										<td className="px-4 py-3 border flex justify-center items-center space-x-2">
 											<StarIcon
 												role="button"
+												aria-label="Toggle favorite"
+												data-testid="favorite-stock-icon"
 												tabIndex={0}
 												onClick={() => handleToggleFavorite(stock.symbol)}
 												onKeyDown={(e) =>
@@ -222,7 +224,9 @@ const StockTable = () => {
 												} cursor-pointer`}
 											/>
 											<XMarkIcon
+												data-testid="remove-stock-icon"
 												role="button"
+												aria-label="Remove stock"
 												tabIndex={0}
 												onClick={() => handleRemoveStock(stock.symbol)}
 												onKeyDown={(e) =>
