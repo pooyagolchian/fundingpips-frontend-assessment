@@ -11,7 +11,8 @@
 		"test:watch": "jest --passWithNoTests --watch",
 		"biome:format": "biome format --write",
 		"biome:lint": "biome check",
-		"postinstall": "husky install"
+		"postinstall": "husky install",
+		"cypress:open": "cypress open"
 	},
 	"dependencies": {
 		"@heroicons/react": "^2.2.0",
