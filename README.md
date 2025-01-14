@@ -59,7 +59,7 @@ I used redux and redux-toolkit and redux-persist for the state management and st
 - **Command:** `husky install`
 - **Description:** Runs after dependencies are installed, setting up Husky for managing Git hooks.
 
-### `cypress:open`
+### `cypress:open` [it's not complete yet]
 - **Command:** `cypress open`
 - **Description:** Opens the Cypress Test Runner for running end-to-end tests interactively.
 
